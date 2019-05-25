@@ -14,8 +14,6 @@ namespace podsnip
 
         private void btnSnip_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog1;
-            saveFileDialog1 = new SaveFileDialog();
             processFile();
         }
 
