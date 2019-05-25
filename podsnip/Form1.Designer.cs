@@ -32,7 +32,6 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.lblStartTime = new System.Windows.Forms.Label();
             this.lblEndTime = new System.Windows.Forms.Label();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.lblStartFile = new System.Windows.Forms.Label();
             this.txtOpenFilename = new System.Windows.Forms.TextBox();
             this.btnOpenFile = new System.Windows.Forms.Button();
@@ -218,7 +217,6 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label lblStartTime;
         private System.Windows.Forms.Label lblEndTime;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Label lblStartFile;
         private System.Windows.Forms.TextBox txtOpenFilename;
         private System.Windows.Forms.Button btnOpenFile;

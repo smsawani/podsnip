@@ -51,8 +51,8 @@ namespace podsnip
 
             using (var reader = new Mp3FileReader(mp3Path))
             {
-                var outputFilename = String.Format("{0}_H{1}M{2}S{3}_to_H{4}M{5}S{6}",
-                                                    mp3File,
+                var outputFilename = String.Format("{0}_{1}h{2}m{3}s_to_{4}h{5}m{6}s",
+                                                    Path.GetFileNameWithoutExtension(mp3Path),
                                                     startHour.Value,
                                                     startMinutes.Value,
                                                     startSeconds.Value,
