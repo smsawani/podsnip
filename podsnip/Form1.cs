@@ -88,5 +88,35 @@ namespace podsnip
             }
 
         }
+
+        private void startHour_ValueChanged(object sender, EventArgs e)
+        {
+            label1.Text = startHour.Value.ToString().PadLeft(2, '0');
+        }
+
+        private void startMinutes_ValueChanged(object sender, EventArgs e)
+        {
+            label3.Text = startMinutes.Value.ToString().PadLeft(2, '0');
+        }
+
+        private void startSeconds_ValueChanged(object sender, EventArgs e)
+        {
+            label5.Text = startSeconds.Value.ToString().PadLeft(2, '0');
+        }
+
+        private void endHour_ValueChanged(object sender, EventArgs e)
+        {
+            label8.Text = endHour.Value.ToString().PadLeft(2, '0');
+        }
+
+        private void endMinutes_ValueChanged(object sender, EventArgs e)
+        {
+            label7.Text = endMinutes.Value.ToString().PadLeft(2, '0');
+        }
+
+        private void endSeconds_ValueChanged(object sender, EventArgs e)
+        {
+            label6.Text = endSeconds.Value.ToString().PadLeft(2, '0');
+        }
     }
 }
