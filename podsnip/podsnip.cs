@@ -80,6 +80,8 @@ namespace podsnip
 
         private void processFile()
         {
+            string splitDir = "";
+
             try
             {
                 // no filename error
@@ -94,7 +96,7 @@ namespace podsnip
                 var mp3Path = txtOpenFilename.Text;
                 var mp3Dir = Path.GetDirectoryName(mp3Path);
                 var mp3File = Path.GetFileName(mp3Path);
-                var splitDir = Path.Combine(mp3Dir, Path.GetFileNameWithoutExtension(mp3Path));
+                splitDir = Path.Combine(mp3Dir, Path.GetFileNameWithoutExtension(mp3Path));
                 Directory.CreateDirectory(splitDir);
 
                 // get all the values in seconds
@@ -161,6 +163,7 @@ namespace podsnip
             }
             catch
             {
+                Directory.Delete(splitDir);
                 throw;
             }
         }
