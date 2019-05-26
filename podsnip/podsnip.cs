@@ -123,7 +123,7 @@ namespace podsnip
 
                 using (var reader = new Mp3FileReader(mp3Path))
                 {
-                    var outputFilename = String.Format("{7}{0} {1}[{2}m{3}s - {4}{5}m{6}s]",
+                    var outputFilename = String.Format("{7}{0} [{1}{2}m{3}s - {4}{5}m{6}s]",
                                                         Path.GetFileNameWithoutExtension(mp3Path),
                                                         evalHourTextForOutputFilename(sH),
                                                         startMinutes.Value,
