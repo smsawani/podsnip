@@ -12,11 +12,6 @@ namespace podsnip
             InitializeComponent();
         }
 
-       
-
-        
-
-
         private void btnSnip_Click(object sender, EventArgs e)
         {
             //processStream();
@@ -35,31 +30,37 @@ namespace podsnip
         private void startHour_ValueChanged(object sender, EventArgs e)
         {
             label1.Text = startHour.Value.ToString().PadLeft(2, '0');
+            lblDone.Visible = false;
         }
 
         private void startMinutes_ValueChanged(object sender, EventArgs e)
         {
             label3.Text = startMinutes.Value.ToString().PadLeft(2, '0');
+            lblDone.Visible = false;
         }
 
         private void startSeconds_ValueChanged(object sender, EventArgs e)
         {
             label5.Text = startSeconds.Value.ToString().PadLeft(2, '0');
+            lblDone.Visible = false;
         }
 
         private void endHour_ValueChanged(object sender, EventArgs e)
         {
             label8.Text = endHour.Value.ToString().PadLeft(2, '0');
+            lblDone.Visible = false;
         }
 
         private void endMinutes_ValueChanged(object sender, EventArgs e)
         {
             label7.Text = endMinutes.Value.ToString().PadLeft(2, '0');
+            lblDone.Visible = false;
         }
 
         private void endSeconds_ValueChanged(object sender, EventArgs e)
         {
             label6.Text = endSeconds.Value.ToString().PadLeft(2, '0');
+            lblDone.Visible = false;
         }
 
         private void processFile()
@@ -85,7 +86,7 @@ namespace podsnip
 
             using (var reader = new Mp3FileReader(mp3Path))
             {
-                var outputFilename = String.Format("{7}{0}_{1}{2}m{3}s_to_{4}{5}m{6}s",
+                var outputFilename = String.Format("{7}{0} {1}[{2}m{3}s - {4}{5}m{6}s]",
                                                     Path.GetFileNameWithoutExtension(mp3Path),
                                                     evalHourTextForOutputFilename(sH),
                                                     startMinutes.Value,
@@ -153,6 +154,14 @@ namespace podsnip
             }
 
             return startHourForFilename;
+        }
+
+        private void txtOptionalTag_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.KeyChar.ToString(), @"[^?:\\/:*?\""<>|]"))
+            {
+                e.Handled = true;
+            }
         }
 
         //private void processStream()

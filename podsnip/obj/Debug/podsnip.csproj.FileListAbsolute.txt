@@ -8,5 +8,4 @@ C:\Users\smsaw\source\repos\podsnip\podsnip\obj\Debug\podsnip.exe
 C:\Users\smsaw\source\repos\podsnip\podsnip\obj\Debug\podsnip.pdb
 C:\Users\smsaw\source\repos\podsnip\podsnip\obj\Debug\podsnip.podsnip.resources
 C:\Users\smsaw\source\repos\podsnip\podsnip\bin\Debug\NAudio.dll
-C:\Users\smsaw\source\repos\podsnip\podsnip\obj\Debug\podsnip.csprojAssemblyReference.cache
 C:\Users\smsaw\source\repos\podsnip\podsnip\obj\Debug\podsnip.csproj.CopyComplete

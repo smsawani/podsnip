@@ -1,4 +1,5 @@
-﻿namespace podsnip
+﻿using System.Windows.Forms;
+namespace podsnip
 {
     partial class podsnip
     {
@@ -304,6 +305,7 @@
             this.txtOptionalTag.Name = "txtOptionalTag";
             this.txtOptionalTag.Size = new System.Drawing.Size(100, 20);
             this.txtOptionalTag.TabIndex = 28;
+            this.txtOptionalTag.KeyPress += new KeyPressEventHandler(this.txtOptionalTag_KeyPress);
             // 
             // podsnip
             // 
