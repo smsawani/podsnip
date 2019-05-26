@@ -196,7 +196,7 @@ namespace podsnip
             this.lblDone.AutoSize = true;
             this.lblDone.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDone.ForeColor = System.Drawing.Color.Green;
-            this.lblDone.Location = new System.Drawing.Point(411, 204);
+            this.lblDone.Location = new System.Drawing.Point(18, 9);
             this.lblDone.Name = "lblDone";
             this.lblDone.Size = new System.Drawing.Size(89, 13);
             this.lblDone.TabIndex = 16;
@@ -326,7 +326,7 @@ namespace podsnip
             this.lblErrorMsg.AutoSize = true;
             this.lblErrorMsg.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorMsg.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorMsg.Location = new System.Drawing.Point(411, 204);
+            this.lblErrorMsg.Location = new System.Drawing.Point(18, 9);
             this.lblErrorMsg.Name = "lblErrorMsg";
             this.lblErrorMsg.Size = new System.Drawing.Size(93, 13);
             this.lblErrorMsg.TabIndex = 30;
@@ -337,7 +337,7 @@ namespace podsnip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(539, 255);
+            this.ClientSize = new System.Drawing.Size(547, 251);
             this.Controls.Add(this.lblErrorMsg);
             this.Controls.Add(this.btnClearForm);
             this.Controls.Add(this.txtOptionalTag);

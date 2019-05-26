@@ -14,17 +14,32 @@ namespace podsnip
 
         private void btnSnip_Click(object sender, EventArgs e)
         {
-            //processStream();
-            processFile();
+            try
+            {
+                processFile();
+            }
+            catch (Exception ex)
+            {
+                clearForm();
+                lblErrorMsg.Text = ex.Message;
+                lblErrorMsg.Visible = true;
+            }
         }
 
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog1;
-            openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.ShowDialog();
-            txtOpenFilename.Text = openFileDialog1.FileName.ToString();
-            lblDone.Visible = false;
+            try
+            {
+                OpenFileDialog openFileDialog1;
+                openFileDialog1 = new OpenFileDialog();
+                openFileDialog1.ShowDialog();
+                txtOpenFilename.Text = openFileDialog1.FileName.ToString();
+                lblDone.Visible = false;
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         private void startHour_ValueChanged(object sender, EventArgs e)
@@ -65,114 +80,134 @@ namespace podsnip
 
         private void processFile()
         {
-            // no filename error
-            if (txtOpenFilename.Text.Trim() == "")
+            try
             {
-                lblErrorMsg.Text = "filename is required!";
-                lblErrorMsg.Visible = true;
-                lblDone.Visible = false;
-                return;
-            }
-
-            var mp3Path = txtOpenFilename.Text;
-            var mp3Dir = Path.GetDirectoryName(mp3Path);
-            var mp3File = Path.GetFileName(mp3Path);
-            var splitDir = Path.Combine(mp3Dir, Path.GetFileNameWithoutExtension(mp3Path));
-            Directory.CreateDirectory(splitDir);
-
-            // get all the values in seconds
-            var sH = startHour.Value * 60 * 60;
-            var sM = startMinutes.Value * 60;
-            var sS = startSeconds.Value;
-            var eH = endHour.Value * 60 * 60;
-            var eM = endMinutes.Value * 60;
-            var eS = endSeconds.Value;
-
-            var startSecondsTotal = sH + sM + sS;
-            var endSecondsTotal = eH + eM + eS;
-
-            // bad time range error
-            if (endSecondsTotal < startSecondsTotal || endSecondsTotal == startSecondsTotal)
-            {
-                lblErrorMsg.Text = "bad time range!";
-                lblErrorMsg.Visible = true;
-                lblDone.Visible = false;
-                return;
-            }
-
-            var splitLength = endSecondsTotal - startSecondsTotal;
-
-            using (var reader = new Mp3FileReader(mp3Path))
-            {
-                var outputFilename = String.Format("{7}{0} {1}[{2}m{3}s - {4}{5}m{6}s]",
-                                                    Path.GetFileNameWithoutExtension(mp3Path),
-                                                    evalHourTextForOutputFilename(sH),
-                                                    startMinutes.Value,
-                                                    startSeconds.Value,
-                                                    evalHourTextForOutputFilename(eH),
-                                                    endMinutes.Value,
-                                                    endSeconds.Value,
-                                                    evalOptionalTag());
-
-                FileStream writer = null;
-                Action createWriter = new Action(() =>
+                // no filename error
+                if (txtOpenFilename.Text.Trim() == "")
                 {
-                    writer = File.Create(Path.Combine(splitDir, outputFilename + ".mp3"));
-                });
-
-                Mp3Frame frame;
-                createWriter();
-
-                while ((frame = reader.ReadNextFrame()) != null && writer.CanWrite == true)
-                {
-                    if ((int)reader.CurrentTime.TotalSeconds >= startSecondsTotal)
-                        writer.Write(frame.RawData, 0, frame.RawData.Length);
-
-                    // once we have passed the point in the reader that we needed, dispose writer
-                    if ((int)reader.CurrentTime.TotalSeconds - startSecondsTotal >= splitLength)
-                    {
-                        // done!
-                        writer.Dispose();
-                    }
+                    lblErrorMsg.Text = "filename is required!";
+                    lblErrorMsg.Visible = true;
+                    lblDone.Visible = false;
+                    return;
                 }
 
-                if (writer != null) writer.Dispose();
+                var mp3Path = txtOpenFilename.Text;
+                var mp3Dir = Path.GetDirectoryName(mp3Path);
+                var mp3File = Path.GetFileName(mp3Path);
+                var splitDir = Path.Combine(mp3Dir, Path.GetFileNameWithoutExtension(mp3Path));
+                Directory.CreateDirectory(splitDir);
 
-                lblDone.Visible = true;
-                lblErrorMsg.Visible = false;
+                // get all the values in seconds
+                var sH = startHour.Value * 60 * 60;
+                var sM = startMinutes.Value * 60;
+                var sS = startSeconds.Value;
+                var eH = endHour.Value * 60 * 60;
+                var eM = endMinutes.Value * 60;
+                var eS = endSeconds.Value;
+
+                var startSecondsTotal = sH + sM + sS;
+                var endSecondsTotal = eH + eM + eS;
+
+                // bad time range error
+                if (endSecondsTotal < startSecondsTotal || endSecondsTotal == startSecondsTotal)
+                {
+                    lblErrorMsg.Text = "bad time range!";
+                    lblErrorMsg.Visible = true;
+                    lblDone.Visible = false;
+                    return;
+                }
+
+                var splitLength = endSecondsTotal - startSecondsTotal;
+
+                using (var reader = new Mp3FileReader(mp3Path))
+                {
+                    var outputFilename = String.Format("{7}{0} {1}[{2}m{3}s - {4}{5}m{6}s]",
+                                                        Path.GetFileNameWithoutExtension(mp3Path),
+                                                        evalHourTextForOutputFilename(sH),
+                                                        startMinutes.Value,
+                                                        startSeconds.Value,
+                                                        evalHourTextForOutputFilename(eH),
+                                                        endMinutes.Value,
+                                                        endSeconds.Value,
+                                                        evalOptionalTag());
+
+                    FileStream writer = null;
+                    Action createWriter = new Action(() =>
+                    {
+                        writer = File.Create(Path.Combine(splitDir, outputFilename + ".mp3"));
+                    });
+
+                    Mp3Frame frame;
+                    createWriter();
+
+                    while ((frame = reader.ReadNextFrame()) != null && writer.CanWrite == true)
+                    {
+                        if ((int)reader.CurrentTime.TotalSeconds >= startSecondsTotal)
+                            writer.Write(frame.RawData, 0, frame.RawData.Length);
+
+                        // once we have passed the point in the reader that we needed, dispose writer
+                        if ((int)reader.CurrentTime.TotalSeconds - startSecondsTotal >= splitLength)
+                        {
+                            // done!
+                            writer.Dispose();
+                        }
+                    }
+
+                    if (writer != null) writer.Dispose();
+
+                    lblDone.Visible = true;
+                    lblErrorMsg.Visible = false;
+                }
+            }
+            catch
+            {
+                throw;
             }
         }
 
         private string evalOptionalTag()
         {
-            var optionalTag = "";
-
-            if (txtOptionalTag.Text.Trim() != "")
+            try
             {
-                optionalTag = "[" + txtOptionalTag.Text + "] ";
-            }
-            else
-            {
-                optionalTag = "";
-            }
+                var optionalTag = "";
 
-            return optionalTag;
+                if (txtOptionalTag.Text.Trim() != "")
+                {
+                    optionalTag = "[" + txtOptionalTag.Text + "] ";
+                }
+                else
+                {
+                    optionalTag = "";
+                }
+                return optionalTag;
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         private string evalHourTextForOutputFilename(decimal hour)
         {
-            var startHourForFilename = "";
-
-            if (hour != 0)
+            try
             {
-                startHourForFilename = startHour.Value + "h";
-            }
-            else
-            {
-                startHourForFilename = "";
-            }
+                var startHourForFilename = "";
 
-            return startHourForFilename;
+                if (hour != 0)
+                {
+                    startHourForFilename = startHour.Value + "h";
+                }
+                else
+                {
+                    startHourForFilename = "";
+                }
+
+                return startHourForFilename;
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         private void txtOptionalTag_KeyPress(object sender, KeyPressEventArgs e)
