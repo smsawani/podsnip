@@ -55,6 +55,8 @@ namespace podsnip
             this.label10 = new System.Windows.Forms.Label();
             this.lblOptionalTag = new System.Windows.Forms.Label();
             this.txtOptionalTag = new System.Windows.Forms.TextBox();
+            this.btnClearForm = new System.Windows.Forms.Button();
+            this.lblErrorMsg = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.startMinutes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.startSeconds)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.endMinutes)).BeginInit();
@@ -65,7 +67,7 @@ namespace podsnip
             // 
             // btnSnip
             // 
-            this.btnSnip.Location = new System.Drawing.Point(202, 199);
+            this.btnSnip.Location = new System.Drawing.Point(293, 199);
             this.btnSnip.Name = "btnSnip";
             this.btnSnip.Size = new System.Drawing.Size(75, 23);
             this.btnSnip.TabIndex = 2;
@@ -192,9 +194,11 @@ namespace podsnip
             // lblDone
             // 
             this.lblDone.AutoSize = true;
-            this.lblDone.Location = new System.Drawing.Point(295, 204);
+            this.lblDone.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDone.ForeColor = System.Drawing.Color.Green;
+            this.lblDone.Location = new System.Drawing.Point(411, 204);
             this.lblDone.Name = "lblDone";
-            this.lblDone.Size = new System.Drawing.Size(75, 13);
+            this.lblDone.Size = new System.Drawing.Size(89, 13);
             this.lblDone.TabIndex = 16;
             this.lblDone.Text = "snip complete!";
             this.lblDone.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -307,11 +311,35 @@ namespace podsnip
             this.txtOptionalTag.TabIndex = 28;
             this.txtOptionalTag.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtOptionalTag_KeyPress);
             // 
+            // btnClearForm
+            // 
+            this.btnClearForm.Location = new System.Drawing.Point(166, 199);
+            this.btnClearForm.Name = "btnClearForm";
+            this.btnClearForm.Size = new System.Drawing.Size(75, 23);
+            this.btnClearForm.TabIndex = 29;
+            this.btnClearForm.Text = "clear form";
+            this.btnClearForm.UseVisualStyleBackColor = true;
+            this.btnClearForm.Click += new System.EventHandler(this.btnClearForm_Click);
+            // 
+            // lblErrorMsg
+            // 
+            this.lblErrorMsg.AutoSize = true;
+            this.lblErrorMsg.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorMsg.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorMsg.Location = new System.Drawing.Point(411, 204);
+            this.lblErrorMsg.Name = "lblErrorMsg";
+            this.lblErrorMsg.Size = new System.Drawing.Size(93, 13);
+            this.lblErrorMsg.TabIndex = 30;
+            this.lblErrorMsg.Text = "bad input data!";
+            this.lblErrorMsg.Visible = false;
+            // 
             // podsnip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(539, 255);
+            this.Controls.Add(this.lblErrorMsg);
+            this.Controls.Add(this.btnClearForm);
             this.Controls.Add(this.txtOptionalTag);
             this.Controls.Add(this.lblOptionalTag);
             this.Controls.Add(this.label9);
@@ -377,6 +405,8 @@ namespace podsnip
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lblOptionalTag;
         private System.Windows.Forms.TextBox txtOptionalTag;
+        private Button btnClearForm;
+        private Label lblErrorMsg;
     }
 }
 

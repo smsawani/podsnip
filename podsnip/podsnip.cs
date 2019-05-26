@@ -82,6 +82,14 @@ namespace podsnip
             var startSecondsTotal = sH + sM + sS;
             var endSecondsTotal = eH + eM + eS;
 
+
+            if (endSecondsTotal < startSecondsTotal)
+            {
+                lblErrorMsg.Visible = true;
+                lblDone.Visible = false;
+                return;
+            }
+
             var splitLength = endSecondsTotal - startSecondsTotal;
 
             using (var reader = new Mp3FileReader(mp3Path))
@@ -121,22 +129,7 @@ namespace podsnip
                 if (writer != null) writer.Dispose();
 
                 lblDone.Visible = true;
-                
-                //txtOpenFilename.Text = "";
-                //startHour.Value = 0;
-                //startMinutes.Value = 0;
-                //startSeconds.Value = 0;
-                //endHour.Value = 0;
-                //endMinutes.Value = 0;
-                //endSeconds.Value = 0;
-
-                //displayEndHour.Text = "00";
-                //displayEndMinutes.Text = "00";
-                //displayEndSeconds.Text = "00";
-                //displayStartHour.Text = "00";
-                //displayStartMinutes.Text = "00";
-                //displayStartSeconds.Text = "00";
-                //txtOptionalTag.Text = "";
+                lblErrorMsg.Visible = false;
             }
         }
 
@@ -180,70 +173,29 @@ namespace podsnip
             }
         }
 
-        //private void processStream()
-        //{
-        //    // $$$$ TODO figure out what I need to pass to 
-        //    // $$$$ dumb test for URI $$$
-        //    // http://traffic.libsyn.com/uhhyeahdude/ep722toilettrainingwithexperts.mp3
+        private void btnClearForm_Click(object sender, EventArgs e)
+        {
+            clearForm();
+        }
 
-        //    var mp3Path = txtOpenFilename.Text;
-        //    var mp3Dir = Path.GetDirectoryName(mp3Path);
-        //    var mp3File = Path.GetFileName(mp3Path);
-        //    var splitDir = Path.Combine(mp3Dir, Path.GetFileNameWithoutExtension(mp3Path));
-        //    Directory.CreateDirectory(splitDir);
-
-        //    // get all the values in seconds
-        //    var sH = startHour.Value * 60 * 60;
-        //    var sM = startMinutes.Value * 60;
-        //    var sS = startSeconds.Value;
-        //    var eH = endHour.Value * 60 * 60;
-        //    var eM = endMinutes.Value * 60;
-        //    var eS = endSeconds.Value;
-
-        //    var startSecondsTotal = sH + sM + sS;
-        //    var endSecondsTotal = eH + eM + eS;
-        //    var splitLength = endSecondsTotal - startSecondsTotal;
-
-
-        //    // ### this is where it begins the read to read a local file, can I change this so it either does that OR a URI?
-        //    using (var reader = new Mp3FileReader(mp3Path))
-        //    {
-        //        var outputFilename = String.Format("{0}_{1}{2}m{3}s_to_{4}{5}m{6}s",
-        //                                            Path.GetFileNameWithoutExtension(mp3Path),
-        //                                            evalHourTextForOutputFilename(sH),
-        //                                            startMinutes.Value,
-        //                                            startSeconds.Value,
-        //                                            evalHourTextForOutputFilename(eH),
-        //                                            endMinutes.Value,
-        //                                            endSeconds.Value);
-
-        //        FileStream writer = null;
-        //        Action createWriter = new Action(() =>
-        //        {
-        //            writer = File.Create(Path.Combine(splitDir, outputFilename + ".mp3"));
-        //        });
-
-        //        Mp3Frame frame;
-        //        createWriter();
-
-        //        while ((frame = reader.ReadNextFrame()) != null && writer.CanWrite == true)
-        //        {
-        //            if ((int)reader.CurrentTime.TotalSeconds >= startSecondsTotal)
-        //                writer.Write(frame.RawData, 0, frame.RawData.Length);
-
-        //            // once we have passed the point in the reader that we needed, dispose writer
-        //            if ((int)reader.CurrentTime.TotalSeconds - startSecondsTotal >= splitLength)
-        //            {
-        //                // done!
-        //                writer.Dispose();
-        //            }
-        //        }
-
-        //        if (writer != null) writer.Dispose();
-
-        //        lblDone.Visible = true;
-        //    }
-        //}
+        private void clearForm()
+        {
+            txtOpenFilename.Text = "";
+            startHour.Value = 0;
+            startMinutes.Value = 0;
+            startSeconds.Value = 0;
+            endHour.Value = 0;
+            endMinutes.Value = 0;
+            endSeconds.Value = 0;
+            displayEndHour.Text = "00";
+            displayEndMinutes.Text = "00";
+            displayEndSeconds.Text = "00";
+            displayStartHour.Text = "00";
+            displayStartMinutes.Text = "00";
+            displayStartSeconds.Text = "00";
+            txtOptionalTag.Text = "";
+            lblDone.Visible = false;
+        }
     }
 }
 
