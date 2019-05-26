@@ -52,6 +52,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.lblOptionalTag = new System.Windows.Forms.Label();
+            this.txtOptionalTag = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.startMinutes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.startSeconds)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.endMinutes)).BeginInit();
@@ -62,7 +64,7 @@
             // 
             // btnSnip
             // 
-            this.btnSnip.Location = new System.Drawing.Point(202, 167);
+            this.btnSnip.Location = new System.Drawing.Point(202, 199);
             this.btnSnip.Name = "btnSnip";
             this.btnSnip.Size = new System.Drawing.Size(75, 23);
             this.btnSnip.TabIndex = 2;
@@ -105,7 +107,7 @@
             // 
             this.txtOpenFilename.Location = new System.Drawing.Point(97, 35);
             this.txtOpenFilename.Name = "txtOpenFilename";
-            this.txtOpenFilename.Size = new System.Drawing.Size(353, 20);
+            this.txtOpenFilename.Size = new System.Drawing.Size(430, 20);
             this.txtOpenFilename.TabIndex = 8;
             // 
             // btnOpenFile
@@ -189,7 +191,7 @@
             // lblDone
             // 
             this.lblDone.AutoSize = true;
-            this.lblDone.Location = new System.Drawing.Point(295, 172);
+            this.lblDone.Location = new System.Drawing.Point(295, 204);
             this.lblDone.Name = "lblDone";
             this.lblDone.Size = new System.Drawing.Size(75, 13);
             this.lblDone.TabIndex = 16;
@@ -287,11 +289,29 @@
             this.label10.TabIndex = 25;
             this.label10.Text = ":";
             // 
+            // lblOptionalTag
+            // 
+            this.lblOptionalTag.AutoSize = true;
+            this.lblOptionalTag.Location = new System.Drawing.Point(16, 158);
+            this.lblOptionalTag.Name = "lblOptionalTag";
+            this.lblOptionalTag.Size = new System.Drawing.Size(117, 13);
+            this.lblOptionalTag.TabIndex = 27;
+            this.lblOptionalTag.Text = "tag output file (optional)";
+            // 
+            // txtOptionalTag
+            // 
+            this.txtOptionalTag.Location = new System.Drawing.Point(139, 155);
+            this.txtOptionalTag.Name = "txtOptionalTag";
+            this.txtOptionalTag.Size = new System.Drawing.Size(100, 20);
+            this.txtOptionalTag.TabIndex = 28;
+            // 
             // podsnip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(470, 211);
+            this.ClientSize = new System.Drawing.Size(539, 255);
+            this.Controls.Add(this.txtOptionalTag);
+            this.Controls.Add(this.lblOptionalTag);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label6);
@@ -353,6 +373,8 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblOptionalTag;
+        private System.Windows.Forms.TextBox txtOptionalTag;
     }
 }
 

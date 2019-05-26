@@ -9,4 +9,3 @@ C:\Users\smsaw\source\repos\podsnip\podsnip\obj\Release\podsnip.csproj.CoreCompi
 C:\Users\smsaw\source\repos\podsnip\podsnip\obj\Release\podsnip.csproj.CopyComplete
 C:\Users\smsaw\source\repos\podsnip\podsnip\obj\Release\podsnip.exe
 C:\Users\smsaw\source\repos\podsnip\podsnip\obj\Release\podsnip.pdb
-C:\Users\smsaw\source\repos\podsnip\podsnip\obj\Release\podsnip.csprojAssemblyReference.cache
