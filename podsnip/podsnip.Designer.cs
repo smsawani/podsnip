@@ -43,14 +43,14 @@ namespace podsnip
             this.startHour = new System.Windows.Forms.NumericUpDown();
             this.endHour = new System.Windows.Forms.NumericUpDown();
             this.lblDone = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.displayStartHour = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.displayStartMinutes = new System.Windows.Forms.Label();
+            this.label66 = new System.Windows.Forms.Label();
+            this.displayStartSeconds = new System.Windows.Forms.Label();
+            this.displayEndSeconds = new System.Windows.Forms.Label();
+            this.displayEndMinutes = new System.Windows.Forms.Label();
+            this.displayEndHour = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.lblOptionalTag = new System.Windows.Forms.Label();
@@ -200,14 +200,14 @@ namespace podsnip
             this.lblDone.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblDone.Visible = false;
             // 
-            // label1
+            // displayStartHour
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(262, 107);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(19, 13);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "00";
+            this.displayStartHour.AutoSize = true;
+            this.displayStartHour.Location = new System.Drawing.Point(262, 107);
+            this.displayStartHour.Name = "displayStartHour";
+            this.displayStartHour.Size = new System.Drawing.Size(19, 13);
+            this.displayStartHour.TabIndex = 17;
+            this.displayStartHour.Text = "00";
             // 
             // label2
             // 
@@ -218,59 +218,59 @@ namespace podsnip
             this.label2.TabIndex = 18;
             this.label2.Text = ":";
             // 
-            // label3
+            // displayStartMinutes
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(283, 107);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(19, 13);
-            this.label3.TabIndex = 19;
-            this.label3.Text = "00";
+            this.displayStartMinutes.AutoSize = true;
+            this.displayStartMinutes.Location = new System.Drawing.Point(283, 107);
+            this.displayStartMinutes.Name = "displayStartMinutes";
+            this.displayStartMinutes.Size = new System.Drawing.Size(19, 13);
+            this.displayStartMinutes.TabIndex = 19;
+            this.displayStartMinutes.Text = "00";
             // 
-            // label4
+            // label66
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(299, 107);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(10, 13);
-            this.label4.TabIndex = 20;
-            this.label4.Text = ":";
+            this.label66.AutoSize = true;
+            this.label66.Location = new System.Drawing.Point(299, 107);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(10, 13);
+            this.label66.TabIndex = 20;
+            this.label66.Text = ":";
             // 
-            // label5
+            // displayStartSeconds
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(306, 107);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(19, 13);
-            this.label5.TabIndex = 21;
-            this.label5.Text = "00";
+            this.displayStartSeconds.AutoSize = true;
+            this.displayStartSeconds.Location = new System.Drawing.Point(306, 107);
+            this.displayStartSeconds.Name = "displayStartSeconds";
+            this.displayStartSeconds.Size = new System.Drawing.Size(19, 13);
+            this.displayStartSeconds.TabIndex = 21;
+            this.displayStartSeconds.Text = "00";
             // 
-            // label6
+            // displayEndSeconds
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(306, 126);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(19, 13);
-            this.label6.TabIndex = 24;
-            this.label6.Text = "00";
+            this.displayEndSeconds.AutoSize = true;
+            this.displayEndSeconds.Location = new System.Drawing.Point(306, 126);
+            this.displayEndSeconds.Name = "displayEndSeconds";
+            this.displayEndSeconds.Size = new System.Drawing.Size(19, 13);
+            this.displayEndSeconds.TabIndex = 24;
+            this.displayEndSeconds.Text = "00";
             // 
-            // label7
+            // displayEndMinutes
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(284, 126);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(19, 13);
-            this.label7.TabIndex = 23;
-            this.label7.Text = "00";
+            this.displayEndMinutes.AutoSize = true;
+            this.displayEndMinutes.Location = new System.Drawing.Point(284, 126);
+            this.displayEndMinutes.Name = "displayEndMinutes";
+            this.displayEndMinutes.Size = new System.Drawing.Size(19, 13);
+            this.displayEndMinutes.TabIndex = 23;
+            this.displayEndMinutes.Text = "00";
             // 
-            // label8
+            // displayEndHour
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(262, 126);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(19, 13);
-            this.label8.TabIndex = 22;
-            this.label8.Text = "00";
+            this.displayEndHour.AutoSize = true;
+            this.displayEndHour.Location = new System.Drawing.Point(262, 126);
+            this.displayEndHour.Name = "displayEndHour";
+            this.displayEndHour.Size = new System.Drawing.Size(19, 13);
+            this.displayEndHour.TabIndex = 22;
+            this.displayEndHour.Text = "00";
             // 
             // label9
             // 
@@ -305,7 +305,7 @@ namespace podsnip
             this.txtOptionalTag.Name = "txtOptionalTag";
             this.txtOptionalTag.Size = new System.Drawing.Size(100, 20);
             this.txtOptionalTag.TabIndex = 28;
-            this.txtOptionalTag.KeyPress += new KeyPressEventHandler(this.txtOptionalTag_KeyPress);
+            this.txtOptionalTag.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtOptionalTag_KeyPress);
             // 
             // podsnip
             // 
@@ -316,14 +316,14 @@ namespace podsnip
             this.Controls.Add(this.lblOptionalTag);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.displayEndSeconds);
+            this.Controls.Add(this.displayEndMinutes);
+            this.Controls.Add(this.displayEndHour);
+            this.Controls.Add(this.displayStartSeconds);
+            this.Controls.Add(this.label66);
+            this.Controls.Add(this.displayStartMinutes);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.displayStartHour);
             this.Controls.Add(this.lblDone);
             this.Controls.Add(this.endHour);
             this.Controls.Add(this.startHour);
@@ -365,14 +365,14 @@ namespace podsnip
         private System.Windows.Forms.NumericUpDown startHour;
         private System.Windows.Forms.NumericUpDown endHour;
         private System.Windows.Forms.Label lblDone;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label displayStartHour;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label displayStartMinutes;
+        private System.Windows.Forms.Label label66;
+        private System.Windows.Forms.Label displayStartSeconds;
+        private System.Windows.Forms.Label displayEndSeconds;
+        private System.Windows.Forms.Label displayEndMinutes;
+        private System.Windows.Forms.Label displayEndHour;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lblOptionalTag;

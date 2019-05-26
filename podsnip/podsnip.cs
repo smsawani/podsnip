@@ -29,37 +29,37 @@ namespace podsnip
 
         private void startHour_ValueChanged(object sender, EventArgs e)
         {
-            label1.Text = startHour.Value.ToString().PadLeft(2, '0');
+            displayStartHour.Text = startHour.Value.ToString().PadLeft(2, '0');
             lblDone.Visible = false;
         }
 
         private void startMinutes_ValueChanged(object sender, EventArgs e)
         {
-            label3.Text = startMinutes.Value.ToString().PadLeft(2, '0');
+            displayStartMinutes.Text = startMinutes.Value.ToString().PadLeft(2, '0');
             lblDone.Visible = false;
         }
 
         private void startSeconds_ValueChanged(object sender, EventArgs e)
         {
-            label5.Text = startSeconds.Value.ToString().PadLeft(2, '0');
+            displayStartSeconds.Text = startSeconds.Value.ToString().PadLeft(2, '0');
             lblDone.Visible = false;
         }
 
         private void endHour_ValueChanged(object sender, EventArgs e)
         {
-            label8.Text = endHour.Value.ToString().PadLeft(2, '0');
+            displayEndHour.Text = endHour.Value.ToString().PadLeft(2, '0');
             lblDone.Visible = false;
         }
 
         private void endMinutes_ValueChanged(object sender, EventArgs e)
         {
-            label7.Text = endMinutes.Value.ToString().PadLeft(2, '0');
+            displayEndMinutes.Text = endMinutes.Value.ToString().PadLeft(2, '0');
             lblDone.Visible = false;
         }
 
         private void endSeconds_ValueChanged(object sender, EventArgs e)
         {
-            label6.Text = endSeconds.Value.ToString().PadLeft(2, '0');
+            displayEndSeconds.Text = endSeconds.Value.ToString().PadLeft(2, '0');
             lblDone.Visible = false;
         }
 
@@ -121,6 +121,22 @@ namespace podsnip
                 if (writer != null) writer.Dispose();
 
                 lblDone.Visible = true;
+                
+                //txtOpenFilename.Text = "";
+                //startHour.Value = 0;
+                //startMinutes.Value = 0;
+                //startSeconds.Value = 0;
+                //endHour.Value = 0;
+                //endMinutes.Value = 0;
+                //endSeconds.Value = 0;
+
+                //displayEndHour.Text = "00";
+                //displayEndMinutes.Text = "00";
+                //displayEndSeconds.Text = "00";
+                //displayStartHour.Text = "00";
+                //displayStartMinutes.Text = "00";
+                //displayStartSeconds.Text = "00";
+                //txtOptionalTag.Text = "";
             }
         }
 
