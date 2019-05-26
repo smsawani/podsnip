@@ -65,6 +65,15 @@ namespace podsnip
 
         private void processFile()
         {
+            // no filename error
+            if (txtOpenFilename.Text.Trim() == "")
+            {
+                lblErrorMsg.Text = "filename is required!";
+                lblErrorMsg.Visible = true;
+                lblDone.Visible = false;
+                return;
+            }
+
             var mp3Path = txtOpenFilename.Text;
             var mp3Dir = Path.GetDirectoryName(mp3Path);
             var mp3File = Path.GetFileName(mp3Path);
@@ -82,9 +91,10 @@ namespace podsnip
             var startSecondsTotal = sH + sM + sS;
             var endSecondsTotal = eH + eM + eS;
 
-
-            if (endSecondsTotal < startSecondsTotal)
+            // bad time range error
+            if (endSecondsTotal < startSecondsTotal || endSecondsTotal == startSecondsTotal)
             {
+                lblErrorMsg.Text = "bad time range!";
                 lblErrorMsg.Visible = true;
                 lblDone.Visible = false;
                 return;
@@ -195,6 +205,7 @@ namespace podsnip
             displayStartSeconds.Text = "00";
             txtOptionalTag.Text = "";
             lblDone.Visible = false;
+            lblErrorMsg.Visible = false;
         }
     }
 }
