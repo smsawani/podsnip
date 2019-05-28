@@ -17,8 +17,14 @@ namespace podsnip
         {
             try
             {
-                processFile();
-                //processStream();
+                if (txtOpenFilename.Text.Trim().Contains("://"))
+                {
+                    processStream();
+                }
+                else
+                { 
+                    processFile();
+                }
             }
             catch (Exception ex)
             {
@@ -173,10 +179,10 @@ namespace podsnip
         private void processStream()
         {
             /*
-                http://hwcdn.libsyn.com/p/0/e/c/0ecf0a466567e970/ep666beastmode.mp3?c_id=22289836&cs_id=22289836&expiration=1558928676&hwt=bef19cde314a5c2f11cc8b7d6dc041c5
+                var dynamicURL = "http://hwcdn.libsyn.com/p/0/e/c/0ecf0a466567e970/ep666beastmode.mp3?c_id=22289836&cs_id=22289836&expiration=1558928676&hwt=bef19cde314a5c2f11cc8b7d6dc041c5"
+                var staticURL = "http://parttimesongs.com/sounds/SONGS/PTS007_HoldItTillItsGold.mp3";
+                temp file name C:\Users\smsaw\AppData\Local\Temp\tmp36AA.tmp
             */
-
-            string splitDir = "";
 
             try
             {
@@ -189,7 +195,16 @@ namespace podsnip
                     return;
                 }
 
-                Directory.CreateDirectory(@"c:\snips\");
+                // get the name of the mp3 out of the URL
+                // 1. split on "?"
+                // 2. split that result on "/"
+                // 3. take last element of that as the mp3 name
+                string[] split1 = txtOpenFilename.Text.Trim().Split('?');
+                string[] split2 = split1[0].Split('/');
+                string[] split3 = split2[split2.Length - 1].Split('.');
+                string mp3Name = split3[0];
+
+                Directory.CreateDirectory(@"C:\podsnip");
 
                 // get all the values in seconds
                 var sH = startHour.Value * 60 * 60;
@@ -213,63 +228,72 @@ namespace podsnip
 
                 var splitLength = endSecondsTotal - startSecondsTotal;
 
-                using (Stream ms = new MemoryStream())
+                HttpWebRequest dynamicRequest = (HttpWebRequest)WebRequest.Create(txtOpenFilename.Text.Trim());
+
+                string tempFilePathAndName = Path.GetTempFileName();
+                
+
+                FileStream fs = new FileStream(tempFilePathAndName, FileMode.Create, FileAccess.Write);
+
+                using (Stream stream = dynamicRequest.GetResponse().GetResponseStream())
                 {
-                    using (Stream stream = WebRequest.Create(txtOpenFilename.Text)
-                        .GetResponse().GetResponseStream())
+                    byte[] buffer = new byte[32768];
+                    int read;
+                    while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
                     {
-                        byte[] buffer = new byte[32768];
-                        int read;
-                        while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
+                        fs.Write(buffer, 0, read);
+                    }
+                    fs.Close();
+                }
+
+                using (var reader = new Mp3FileReader(tempFilePathAndName))
+                {
+                    var outputFilename = String.Format("{7}{0} [{1}{2}m{3}s - {4}{5}m{6}s]",
+                                                        mp3Name,
+                                                        evalHourTextForOutputFilename(startHour.Value),
+                                                        startMinutes.Value,
+                                                        startSeconds.Value,
+                                                        evalHourTextForOutputFilename(endHour.Value),
+                                                        endMinutes.Value,
+                                                        endSeconds.Value,
+                                                        evalOptionalTag());
+
+                    FileStream writer = null;
+                    Action createWriter = new Action(() =>
+                    {
+                        writer = File.Create(Path.Combine(@"C:\podsnip\", outputFilename + ".mp3"));
+                    });
+
+                    Mp3Frame frame;
+                    createWriter();
+
+                    while ((frame = reader.ReadNextFrame()) != null && writer.CanWrite == true)
+                    {
+                        if ((int)reader.CurrentTime.TotalSeconds >= startSecondsTotal)
+                            writer.Write(frame.RawData, 0, frame.RawData.Length);
+
+                        // once we have passed the point in the reader that we needed, dispose writer
+                        if ((int)reader.CurrentTime.TotalSeconds - startSecondsTotal >= splitLength)
                         {
-                            ms.Write(buffer, 0, read);
+                            // done!
+                            writer.Dispose();
                         }
                     }
 
-                    using (var reader = new Mp3FileReader(ms))
-                    {
-                        var outputFilename = String.Format("{7}{0} [{1}{2}m{3}s - {4}{5}m{6}s]",
-                                                            "podsnip_",
-                                                            evalHourTextForOutputFilename(startHour.Value),
-                                                            startMinutes.Value,
-                                                            startSeconds.Value,
-                                                            evalHourTextForOutputFilename(endHour.Value),
-                                                            endMinutes.Value,
-                                                            endSeconds.Value,
-                                                            evalOptionalTag());
+                    if (writer != null) writer.Dispose();
 
-                        FileStream writer = null;
-                        Action createWriter = new Action(() =>
-                        {
-                            writer = File.Create(Path.Combine(splitDir, outputFilename + ".mp3"));
-                        });
+                    lblDone.Visible = true;
+                    lblErrorMsg.Visible = false;
 
-                        Mp3Frame frame;
-                        createWriter();
+                    // delete tempFilePath
+                    fs.Dispose();
 
-                        while ((frame = reader.ReadNextFrame()) != null && writer.CanWrite == true)
-                        {
-                            if ((int)reader.CurrentTime.TotalSeconds >= startSecondsTotal)
-                                writer.Write(frame.RawData, 0, frame.RawData.Length);
-
-                            // once we have passed the point in the reader that we needed, dispose writer
-                            if ((int)reader.CurrentTime.TotalSeconds - startSecondsTotal >= splitLength)
-                            {
-                                // done!
-                                writer.Dispose();
-                            }
-                        }
-
-                        if (writer != null) writer.Dispose();
-
-                        lblDone.Visible = true;
-                        lblErrorMsg.Visible = false;
-                    }
+                    // not quite sure why it won't let me delete from the temp folder, to do, fix this
+                    //File.Delete(tempFilePathAndName);
                 }
             }
             catch
             {
-                Directory.Delete(splitDir);
                 throw;
             }
         }

@@ -317,7 +317,7 @@ namespace podsnip
             this.btnClearForm.Name = "btnClearForm";
             this.btnClearForm.Size = new System.Drawing.Size(75, 23);
             this.btnClearForm.TabIndex = 29;
-            this.btnClearForm.Text = "clear form";
+            this.btnClearForm.Text = "start over";
             this.btnClearForm.UseVisualStyleBackColor = true;
             this.btnClearForm.Click += new System.EventHandler(this.btnClearForm_Click);
             // 
