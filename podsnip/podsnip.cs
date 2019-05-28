@@ -50,6 +50,22 @@ namespace podsnip
             }
         }
 
+        private void btnOutputFolder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FolderBrowserDialog folderBrowserDialog1;
+                folderBrowserDialog1 = new FolderBrowserDialog();
+                folderBrowserDialog1.ShowDialog();
+                txtOutputFolder.Text = folderBrowserDialog1.SelectedPath.ToString();
+                lblDone.Visible = false;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         private void startHour_ValueChanged(object sender, EventArgs e)
         {
             displayStartHour.Text = startHour.Value.ToString().PadLeft(2, '0');
@@ -101,11 +117,14 @@ namespace podsnip
                     return;
                 }
 
-                var mp3Path = txtOpenFilename.Text;
-                var mp3Dir = Path.GetDirectoryName(mp3Path);
-                var mp3File = Path.GetFileName(mp3Path);
-                splitDir = Path.Combine(mp3Dir, Path.GetFileNameWithoutExtension(mp3Path));
-                Directory.CreateDirectory(splitDir);
+                // no output folder error
+                if (txtOutputFolder.Text.Trim() == "")
+                {
+                    lblErrorMsg.Text = "output folder is required!";
+                    lblErrorMsg.Visible = true;
+                    lblDone.Visible = false;
+                    return;
+                }
 
                 // get all the values in seconds
                 var sH = startHour.Value * 60 * 60;
@@ -129,6 +148,12 @@ namespace podsnip
 
                 var splitLength = endSecondsTotal - startSecondsTotal;
 
+                var mp3Path = txtOpenFilename.Text;
+                var mp3Dir = Path.GetDirectoryName(mp3Path);
+                var mp3File = Path.GetFileName(mp3Path);
+                splitDir = Path.Combine(mp3Dir, Path.GetFileNameWithoutExtension(mp3Path));
+                Directory.CreateDirectory(splitDir);
+
                 using (var reader = new Mp3FileReader(mp3Path))
                 {
                     var outputFilename = String.Format("{7}{0} [{1}{2}m{3}s - {4}{5}m{6}s]",
@@ -144,7 +169,7 @@ namespace podsnip
                     FileStream writer = null;
                     Action createWriter = new Action(() =>
                     {
-                        writer = File.Create(Path.Combine(splitDir, outputFilename + ".mp3"));
+                        writer = File.Create(Path.Combine(txtOutputFolder.Text.Trim(), outputFilename + ".mp3"));
                     });
 
                     Mp3Frame frame;
@@ -176,6 +201,11 @@ namespace podsnip
             }
         }
 
+        private void process(string filepath)
+        {
+
+        }
+
         private void processStream()
         {
             /*
@@ -204,7 +234,7 @@ namespace podsnip
                 string[] split3 = split2[split2.Length - 1].Split('.');
                 string mp3Name = split3[0];
 
-                Directory.CreateDirectory(@"C:\podsnip");
+                Directory.CreateDirectory(txtOutputFolder.Text.Trim());
 
                 // get all the values in seconds
                 var sH = startHour.Value * 60 * 60;
@@ -359,6 +389,7 @@ namespace podsnip
         private void clearForm()
         {
             txtOpenFilename.Text = "";
+            txtOutputFolder.Text = @"C:\podsnip\";
             startHour.Value = 0;
             startMinutes.Value = 0;
             startSeconds.Value = 0;
