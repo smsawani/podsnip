@@ -311,7 +311,7 @@ namespace podsnip
             // 
             this.txtOptionalTag.Location = new System.Drawing.Point(139, 141);
             this.txtOptionalTag.Name = "txtOptionalTag";
-            this.txtOptionalTag.Size = new System.Drawing.Size(100, 20);
+            this.txtOptionalTag.Size = new System.Drawing.Size(197, 20);
             this.txtOptionalTag.TabIndex = 28;
             this.txtOptionalTag.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtOptionalTag_KeyPress);
             // 
@@ -400,7 +400,7 @@ namespace podsnip
             this.Controls.Add(this.lblStartTime);
             this.Controls.Add(this.btnSnip);
             this.Name = "podsnip";
-            this.Text = "podsnip";
+            this.Text = "podsnip v1.0";
             ((System.ComponentModel.ISupportInitialize)(this.startMinutes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.startSeconds)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.endMinutes)).EndInit();
