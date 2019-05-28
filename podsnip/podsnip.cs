@@ -151,8 +151,7 @@ namespace podsnip
                 var mp3Path = txtOpenFilename.Text;
                 var mp3Dir = Path.GetDirectoryName(mp3Path);
                 var mp3File = Path.GetFileName(mp3Path);
-                splitDir = Path.Combine(mp3Dir, Path.GetFileNameWithoutExtension(mp3Path));
-                Directory.CreateDirectory(splitDir);
+                Directory.CreateDirectory(txtOutputFolder.Text.Trim());
 
                 using (var reader = new Mp3FileReader(mp3Path))
                 {
@@ -196,7 +195,6 @@ namespace podsnip
             }
             catch
             {
-                Directory.Delete(splitDir);
                 throw;
             }
         }
@@ -208,18 +206,21 @@ namespace podsnip
 
         private void processStream()
         {
-            /*
-                var dynamicURL = "http://hwcdn.libsyn.com/p/0/e/c/0ecf0a466567e970/ep666beastmode.mp3?c_id=22289836&cs_id=22289836&expiration=1558928676&hwt=bef19cde314a5c2f11cc8b7d6dc041c5"
-                var staticURL = "http://parttimesongs.com/sounds/SONGS/PTS007_HoldItTillItsGold.mp3";
-                temp file name C:\Users\smsaw\AppData\Local\Temp\tmp36AA.tmp
-            */
-
             try
             {
                 // no filename error
                 if (txtOpenFilename.Text.Trim() == "")
                 {
                     lblErrorMsg.Text = "filename is required!";
+                    lblErrorMsg.Visible = true;
+                    lblDone.Visible = false;
+                    return;
+                }
+
+                // no output folder error
+                if (txtOutputFolder.Text.Trim() == "")
+                {
+                    lblErrorMsg.Text = "output folder is required!";
                     lblErrorMsg.Visible = true;
                     lblDone.Visible = false;
                     return;
@@ -262,7 +263,6 @@ namespace podsnip
 
                 string tempFilePathAndName = Path.GetTempFileName();
                 
-
                 FileStream fs = new FileStream(tempFilePathAndName, FileMode.Create, FileAccess.Write);
 
                 using (Stream stream = dynamicRequest.GetResponse().GetResponseStream())
@@ -315,11 +315,7 @@ namespace podsnip
                     lblDone.Visible = true;
                     lblErrorMsg.Visible = false;
 
-                    // delete tempFilePath
                     fs.Dispose();
-
-                    // not quite sure why it won't let me delete from the temp folder, to do, fix this
-                    //File.Delete(tempFilePathAndName);
                 }
             }
             catch
