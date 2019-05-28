@@ -67,11 +67,11 @@ namespace podsnip
             // 
             // btnSnip
             // 
-            this.btnSnip.Location = new System.Drawing.Point(293, 199);
+            this.btnSnip.Location = new System.Drawing.Point(516, 199);
             this.btnSnip.Name = "btnSnip";
-            this.btnSnip.Size = new System.Drawing.Size(75, 23);
+            this.btnSnip.Size = new System.Drawing.Size(91, 23);
             this.btnSnip.TabIndex = 2;
-            this.btnSnip.Text = "snip mp3";
+            this.btnSnip.Text = "create snip!";
             this.btnSnip.UseVisualStyleBackColor = true;
             this.btnSnip.Click += new System.EventHandler(this.btnSnip_Click);
             // 
@@ -110,7 +110,7 @@ namespace podsnip
             // 
             this.txtOpenFilename.Location = new System.Drawing.Point(97, 35);
             this.txtOpenFilename.Name = "txtOpenFilename";
-            this.txtOpenFilename.Size = new System.Drawing.Size(430, 20);
+            this.txtOpenFilename.Size = new System.Drawing.Size(752, 20);
             this.txtOpenFilename.TabIndex = 8;
             // 
             // btnOpenFile
@@ -119,13 +119,13 @@ namespace podsnip
             this.btnOpenFile.Name = "btnOpenFile";
             this.btnOpenFile.Size = new System.Drawing.Size(75, 23);
             this.btnOpenFile.TabIndex = 9;
-            this.btnOpenFile.Text = "open file";
+            this.btnOpenFile.Text = "select file";
             this.btnOpenFile.UseVisualStyleBackColor = true;
             this.btnOpenFile.Click += new System.EventHandler(this.btnOpenFile_Click);
             // 
             // startMinutes
             // 
-            this.startMinutes.Location = new System.Drawing.Point(167, 101);
+            this.startMinutes.Location = new System.Drawing.Point(185, 101);
             this.startMinutes.Maximum = new decimal(new int[] {
             59,
             0,
@@ -138,7 +138,7 @@ namespace podsnip
             // 
             // startSeconds
             // 
-            this.startSeconds.Location = new System.Drawing.Point(214, 101);
+            this.startSeconds.Location = new System.Drawing.Point(232, 101);
             this.startSeconds.Maximum = new decimal(new int[] {
             59,
             0,
@@ -151,7 +151,7 @@ namespace podsnip
             // 
             // endMinutes
             // 
-            this.endMinutes.Location = new System.Drawing.Point(167, 124);
+            this.endMinutes.Location = new System.Drawing.Point(185, 124);
             this.endMinutes.Maximum = new decimal(new int[] {
             59,
             0,
@@ -164,7 +164,7 @@ namespace podsnip
             // 
             // endSeconds
             // 
-            this.endSeconds.Location = new System.Drawing.Point(213, 124);
+            this.endSeconds.Location = new System.Drawing.Point(231, 124);
             this.endSeconds.Maximum = new decimal(new int[] {
             59,
             0,
@@ -177,7 +177,7 @@ namespace podsnip
             // 
             // startHour
             // 
-            this.startHour.Location = new System.Drawing.Point(121, 101);
+            this.startHour.Location = new System.Drawing.Point(139, 101);
             this.startHour.Name = "startHour";
             this.startHour.Size = new System.Drawing.Size(45, 20);
             this.startHour.TabIndex = 14;
@@ -185,7 +185,7 @@ namespace podsnip
             // 
             // endHour
             // 
-            this.endHour.Location = new System.Drawing.Point(121, 124);
+            this.endHour.Location = new System.Drawing.Point(139, 124);
             this.endHour.Name = "endHour";
             this.endHour.Size = new System.Drawing.Size(45, 20);
             this.endHour.TabIndex = 15;
@@ -207,7 +207,7 @@ namespace podsnip
             // displayStartHour
             // 
             this.displayStartHour.AutoSize = true;
-            this.displayStartHour.Location = new System.Drawing.Point(262, 107);
+            this.displayStartHour.Location = new System.Drawing.Point(280, 107);
             this.displayStartHour.Name = "displayStartHour";
             this.displayStartHour.Size = new System.Drawing.Size(19, 13);
             this.displayStartHour.TabIndex = 17;
@@ -216,7 +216,7 @@ namespace podsnip
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(277, 107);
+            this.label2.Location = new System.Drawing.Point(295, 107);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(10, 13);
             this.label2.TabIndex = 18;
@@ -225,7 +225,7 @@ namespace podsnip
             // displayStartMinutes
             // 
             this.displayStartMinutes.AutoSize = true;
-            this.displayStartMinutes.Location = new System.Drawing.Point(283, 107);
+            this.displayStartMinutes.Location = new System.Drawing.Point(301, 107);
             this.displayStartMinutes.Name = "displayStartMinutes";
             this.displayStartMinutes.Size = new System.Drawing.Size(19, 13);
             this.displayStartMinutes.TabIndex = 19;
@@ -234,7 +234,7 @@ namespace podsnip
             // label66
             // 
             this.label66.AutoSize = true;
-            this.label66.Location = new System.Drawing.Point(299, 107);
+            this.label66.Location = new System.Drawing.Point(317, 107);
             this.label66.Name = "label66";
             this.label66.Size = new System.Drawing.Size(10, 13);
             this.label66.TabIndex = 20;
@@ -243,7 +243,7 @@ namespace podsnip
             // displayStartSeconds
             // 
             this.displayStartSeconds.AutoSize = true;
-            this.displayStartSeconds.Location = new System.Drawing.Point(306, 107);
+            this.displayStartSeconds.Location = new System.Drawing.Point(324, 107);
             this.displayStartSeconds.Name = "displayStartSeconds";
             this.displayStartSeconds.Size = new System.Drawing.Size(19, 13);
             this.displayStartSeconds.TabIndex = 21;
@@ -252,7 +252,7 @@ namespace podsnip
             // displayEndSeconds
             // 
             this.displayEndSeconds.AutoSize = true;
-            this.displayEndSeconds.Location = new System.Drawing.Point(306, 126);
+            this.displayEndSeconds.Location = new System.Drawing.Point(324, 126);
             this.displayEndSeconds.Name = "displayEndSeconds";
             this.displayEndSeconds.Size = new System.Drawing.Size(19, 13);
             this.displayEndSeconds.TabIndex = 24;
@@ -261,7 +261,7 @@ namespace podsnip
             // displayEndMinutes
             // 
             this.displayEndMinutes.AutoSize = true;
-            this.displayEndMinutes.Location = new System.Drawing.Point(284, 126);
+            this.displayEndMinutes.Location = new System.Drawing.Point(302, 126);
             this.displayEndMinutes.Name = "displayEndMinutes";
             this.displayEndMinutes.Size = new System.Drawing.Size(19, 13);
             this.displayEndMinutes.TabIndex = 23;
@@ -270,7 +270,7 @@ namespace podsnip
             // displayEndHour
             // 
             this.displayEndHour.AutoSize = true;
-            this.displayEndHour.Location = new System.Drawing.Point(262, 126);
+            this.displayEndHour.Location = new System.Drawing.Point(280, 126);
             this.displayEndHour.Name = "displayEndHour";
             this.displayEndHour.Size = new System.Drawing.Size(19, 13);
             this.displayEndHour.TabIndex = 22;
@@ -279,7 +279,7 @@ namespace podsnip
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(299, 126);
+            this.label9.Location = new System.Drawing.Point(317, 126);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(10, 13);
             this.label9.TabIndex = 26;
@@ -288,7 +288,7 @@ namespace podsnip
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(277, 126);
+            this.label10.Location = new System.Drawing.Point(295, 126);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(10, 13);
             this.label10.TabIndex = 25;
@@ -297,7 +297,7 @@ namespace podsnip
             // lblOptionalTag
             // 
             this.lblOptionalTag.AutoSize = true;
-            this.lblOptionalTag.Location = new System.Drawing.Point(16, 158);
+            this.lblOptionalTag.Location = new System.Drawing.Point(16, 155);
             this.lblOptionalTag.Name = "lblOptionalTag";
             this.lblOptionalTag.Size = new System.Drawing.Size(117, 13);
             this.lblOptionalTag.TabIndex = 27;
@@ -305,7 +305,7 @@ namespace podsnip
             // 
             // txtOptionalTag
             // 
-            this.txtOptionalTag.Location = new System.Drawing.Point(139, 155);
+            this.txtOptionalTag.Location = new System.Drawing.Point(139, 151);
             this.txtOptionalTag.Name = "txtOptionalTag";
             this.txtOptionalTag.Size = new System.Drawing.Size(100, 20);
             this.txtOptionalTag.TabIndex = 28;
@@ -313,9 +313,9 @@ namespace podsnip
             // 
             // btnClearForm
             // 
-            this.btnClearForm.Location = new System.Drawing.Point(166, 199);
+            this.btnClearForm.Location = new System.Drawing.Point(229, 199);
             this.btnClearForm.Name = "btnClearForm";
-            this.btnClearForm.Size = new System.Drawing.Size(75, 23);
+            this.btnClearForm.Size = new System.Drawing.Size(91, 23);
             this.btnClearForm.TabIndex = 29;
             this.btnClearForm.Text = "start over";
             this.btnClearForm.UseVisualStyleBackColor = true;
@@ -337,7 +337,7 @@ namespace podsnip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(547, 251);
+            this.ClientSize = new System.Drawing.Size(867, 239);
             this.Controls.Add(this.lblErrorMsg);
             this.Controls.Add(this.btnClearForm);
             this.Controls.Add(this.txtOptionalTag);
