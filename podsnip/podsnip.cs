@@ -17,6 +17,9 @@ namespace podsnip
         {
             try
             {
+                // start waiting cursor
+                Cursor.Current = Cursors.WaitCursor;
+
                 if (txtOpenFilename.Text.Trim().Contains("://"))
                 {
                     processStream();
@@ -25,6 +28,9 @@ namespace podsnip
                 { 
                     processFile();
                 }
+                
+                // end waiting cursor
+                Cursor.Current = Cursors.Default;
             }
             catch (Exception ex)
             {
