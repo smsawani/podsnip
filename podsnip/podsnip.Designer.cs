@@ -61,6 +61,8 @@ namespace podsnip
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.txtOutputFolder = new System.Windows.Forms.TextBox();
             this.btnOutputFolder = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblSnipLength = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.startMinutes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.startSeconds)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.endMinutes)).BeginInit();
@@ -71,7 +73,7 @@ namespace podsnip
             // 
             // btnSnip
             // 
-            this.btnSnip.Location = new System.Drawing.Point(346, 172);
+            this.btnSnip.Location = new System.Drawing.Point(296, 172);
             this.btnSnip.Name = "btnSnip";
             this.btnSnip.Size = new System.Drawing.Size(91, 23);
             this.btnSnip.TabIndex = 2;
@@ -317,7 +319,7 @@ namespace podsnip
             // 
             // btnClearForm
             // 
-            this.btnClearForm.Location = new System.Drawing.Point(245, 172);
+            this.btnClearForm.Location = new System.Drawing.Point(160, 172);
             this.btnClearForm.Name = "btnClearForm";
             this.btnClearForm.Size = new System.Drawing.Size(91, 23);
             this.btnClearForm.TabIndex = 29;
@@ -364,11 +366,32 @@ namespace podsnip
             this.btnOutputFolder.UseVisualStyleBackColor = true;
             this.btnOutputFolder.Click += new System.EventHandler(this.btnOutputFolder_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(423, 177);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 13);
+            this.label1.TabIndex = 34;
+            this.label1.Text = "snip length:";
+            // 
+            // lblSnipLength
+            // 
+            this.lblSnipLength.AutoSize = true;
+            this.lblSnipLength.Location = new System.Drawing.Point(495, 178);
+            this.lblSnipLength.Name = "lblSnipLength";
+            this.lblSnipLength.Size = new System.Drawing.Size(49, 13);
+            this.lblSnipLength.TabIndex = 35;
+            this.lblSnipLength.Text = "00:00:00";
+            // 
             // podsnip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(683, 210);
+            this.Controls.Add(this.lblSnipLength);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnOutputFolder);
             this.Controls.Add(this.txtOutputFolder);
             this.Controls.Add(this.lblOutputFolder);
@@ -445,6 +468,8 @@ namespace podsnip
         private FolderBrowserDialog folderBrowserDialog1;
         private TextBox txtOutputFolder;
         private Button btnOutputFolder;
+        private Label label1;
+        private Label lblSnipLength;
     }
 }
 

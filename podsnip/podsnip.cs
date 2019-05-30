@@ -72,40 +72,61 @@ namespace podsnip
             }
         }
 
+        private void calculateSnipLength()
+        {
+            DateTime startTime = Convert.ToDateTime(String.Format("{0}:{1}:{2}", displayStartHour.Text, displayStartMinutes.Text, displayStartSeconds.Text));
+            DateTime endTime = Convert.ToDateTime(String.Format("{0}:{1}:{2}", displayEndHour.Text, displayEndMinutes.Text, displayEndSeconds.Text));
+            TimeSpan snipLength = endTime - startTime;
+            if (snipLength.TotalSeconds < 0)
+            {
+                lblSnipLength.Text = "00:00:00";
+            }
+            else
+            {
+                lblSnipLength.Text = snipLength.ToString();
+            }       
+        }
+
         private void startHour_ValueChanged(object sender, EventArgs e)
         {
             displayStartHour.Text = startHour.Value.ToString().PadLeft(2, '0');
             lblDone.Visible = false;
+            calculateSnipLength();
         }
 
         private void startMinutes_ValueChanged(object sender, EventArgs e)
         {
             displayStartMinutes.Text = startMinutes.Value.ToString().PadLeft(2, '0');
             lblDone.Visible = false;
+            calculateSnipLength();
         }
 
         private void startSeconds_ValueChanged(object sender, EventArgs e)
         {
             displayStartSeconds.Text = startSeconds.Value.ToString().PadLeft(2, '0');
             lblDone.Visible = false;
+            calculateSnipLength();
         }
 
         private void endHour_ValueChanged(object sender, EventArgs e)
         {
             displayEndHour.Text = endHour.Value.ToString().PadLeft(2, '0');
             lblDone.Visible = false;
+            calculateSnipLength();
         }
 
         private void endMinutes_ValueChanged(object sender, EventArgs e)
         {
             displayEndMinutes.Text = endMinutes.Value.ToString().PadLeft(2, '0');
             lblDone.Visible = false;
+            calculateSnipLength();
         }
 
         private void endSeconds_ValueChanged(object sender, EventArgs e)
         {
             displayEndSeconds.Text = endSeconds.Value.ToString().PadLeft(2, '0');
             lblDone.Visible = false;
+            calculateSnipLength();
         }
 
         private string evalOptionalTag()
@@ -186,7 +207,6 @@ namespace podsnip
             lblDone.Visible = false;
             lblErrorMsg.Visible = false;
         }
-
 
         private bool validateInputs(decimal startSecondsTotal, decimal endSecondsTotal)
         {
@@ -371,5 +391,3 @@ namespace podsnip
         }
     }
 }
-
-

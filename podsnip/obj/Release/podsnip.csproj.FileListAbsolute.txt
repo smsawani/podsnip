@@ -2,6 +2,7 @@ C:\Users\smsaw\source\repos\podsnip\podsnip\bin\Release\podsnip.exe.config
 C:\Users\smsaw\source\repos\podsnip\podsnip\bin\Release\podsnip.exe
 C:\Users\smsaw\source\repos\podsnip\podsnip\bin\Release\podsnip.pdb
 C:\Users\smsaw\source\repos\podsnip\podsnip\bin\Release\NAudio.dll
+C:\Users\smsaw\source\repos\podsnip\podsnip\obj\Release\podsnip.csprojAssemblyReference.cache
 C:\Users\smsaw\source\repos\podsnip\podsnip\obj\Release\podsnip.podsnip.resources
 C:\Users\smsaw\source\repos\podsnip\podsnip\obj\Release\podsnip.Properties.Resources.resources
 C:\Users\smsaw\source\repos\podsnip\podsnip\obj\Release\podsnip.csproj.GenerateResource.cache
