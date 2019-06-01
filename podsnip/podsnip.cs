@@ -25,10 +25,10 @@ namespace podsnip
                     processStream();
                 }
                 else
-                { 
+                {
                     processFile();
                 }
-                
+
                 // end waiting cursor
                 Cursor.Current = Cursors.Default;
             }
@@ -84,7 +84,7 @@ namespace podsnip
             else
             {
                 lblSnipLength.Text = snipLength.ToString();
-            }       
+            }
         }
 
         private void startHour_ValueChanged(object sender, EventArgs e)
@@ -264,7 +264,7 @@ namespace podsnip
 
                 if (!validateInputs(startSecondsTotal, endSecondsTotal))
                     return;
-        
+
                 var splitLength = endSecondsTotal - startSecondsTotal;
 
                 var mp3Path = txtOpenFilename.Text;
@@ -272,8 +272,10 @@ namespace podsnip
                 var mp3File = Path.GetFileName(mp3Path);
                 Directory.CreateDirectory(txtOutputFolder.Text.Trim());
 
+                // split this text into hours, minutes, seconds for the filename
+                string[] totalTimePieces = lblSnipLength.Text.Split(':');
 
-                var outputFilename = String.Format("{7}{0} [{1}{2}m{3}s - {4}{5}m{6}s]",
+                var outputFilename = String.Format("{7}{0} [{1}{2}m{3}s - {4}{5}m{6}s, {8}{9}m{10}s total]",
                                                         Path.GetFileNameWithoutExtension(mp3Path),
                                                         evalHourTextForOutputFilename(startHour.Value),
                                                         startMinutes.Value,
@@ -281,7 +283,10 @@ namespace podsnip
                                                         evalHourTextForOutputFilename(endHour.Value),
                                                         endMinutes.Value,
                                                         endSeconds.Value,
-                                                        evalOptionalTag());
+                                                        evalOptionalTag(),
+                                                        evalHourTextForOutputFilename(Convert.ToDecimal(totalTimePieces[0])),
+                                                        Convert.ToDecimal(totalTimePieces[1]),
+                                                        Convert.ToDecimal(totalTimePieces[2]));
 
                 process(mp3Path, outputFilename, startSecondsTotal, splitLength);
             }
@@ -338,8 +343,10 @@ namespace podsnip
                     fs.Close();
                 }
 
+                // split this text into hours, minutes, seconds for the filename
+                string[] totalTimePieces = lblSnipLength.Text.Split(':');
 
-                var outputFilename = String.Format("{7}{0} [{1}{2}m{3}s - {4}{5}m{6}s]",
+                var outputFilename = String.Format("{7}{0} [{1}{2}m{3}s - {4}{5}m{6}s, {8}{9}m{10}s total]",
                                                        mp3Name,
                                                        evalHourTextForOutputFilename(startHour.Value),
                                                        startMinutes.Value,
@@ -347,9 +354,14 @@ namespace podsnip
                                                        evalHourTextForOutputFilename(endHour.Value),
                                                        endMinutes.Value,
                                                        endSeconds.Value,
-                                                       evalOptionalTag());
+                                                       evalOptionalTag(),
+                                                       evalHourTextForOutputFilename(Convert.ToDecimal(totalTimePieces[0])),
+                                                       Convert.ToDecimal(totalTimePieces[1]),
+                                                       Convert.ToDecimal(totalTimePieces[2]));
 
                 process(mp3Path, outputFilename, startSecondsTotal, splitLength);
+
+                // TODO: <><><>< I SHOULD be able to delete the temp file, right??? ><><><>
             }
             catch
             {
