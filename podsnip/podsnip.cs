@@ -275,7 +275,7 @@ namespace podsnip
                 // split this text into hours, minutes, seconds for the filename
                 string[] totalTimePieces = lblSnipLength.Text.Split(':');
 
-                var outputFilename = String.Format("{7}{0} [{1}{2}m{3}s - {4}{5}m{6}s, {8}{9}m{10}s total]",
+                var outputFilename = String.Format("{7}[{1}{2}m{3}s-{4}{5}m{6}s, {8}{9}m{10}s total] {0}",
                                                         Path.GetFileNameWithoutExtension(mp3Path),
                                                         evalHourTextForOutputFilename(startHour.Value),
                                                         startMinutes.Value,
@@ -346,7 +346,7 @@ namespace podsnip
                 // split this text into hours, minutes, seconds for the filename
                 string[] totalTimePieces = lblSnipLength.Text.Split(':');
 
-                var outputFilename = String.Format("{7}{0} [{1}{2}m{3}s - {4}{5}m{6}s, {8}{9}m{10}s total]",
+                var outputFilename = String.Format("{7}[{1}{2}m{3}s-{4}{5}m{6}s, {8}{9}m{10}s total] {0}",
                                                        mp3Name,
                                                        evalHourTextForOutputFilename(startHour.Value),
                                                        startMinutes.Value,
